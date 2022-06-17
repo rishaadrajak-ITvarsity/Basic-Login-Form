@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Space-Z</title>
+    </head>
+
+    <body>
+        <h1>Enter User Log-in Credentials</h1>
+        
+        <form>
+            <label for="uname">Username</label>
+            <input type="text" id="uname">
+            <br>
+            <label for="pwd">Password</label>
+            <input type="password" id="pwd">
+            <p id="msg">please fill in the fields to proceed.</p>
+            <a href="#" onclick="check()">Log in</a>
+            <p id="hidden"></p>
+        </form>
+
+        <script>
+            function verifyUser(){
+                var username = document.getElementById("uname").value;
+                var password = document.getElementById("pwd").value;
+                checkUserCreds(username, password);
+            }
+
+            function check(){
+                var uname = document.getElementById("uname").value
+                var pwd = document.getElementById("pwd").value
+
+                users = {   'Admin':'4dm1n',
+                            'Guest':'12345',
+                            'Bond':'007',}
+                
+                for (user in users) {
+                    if(uname === user && pwd === users[user]){
+                        document.getElementById('msg').innerText="You have successfully logged into the Space-Z network"
+                        document.getElementById('hidden').innerText=""
+                        document.getElementById('uname').style.backgroundColor = "lightgreen"
+                        document.getElementById('pwd').style.backgroundColor = "lightgreen"
+                        return
+                    }
+                }
+                document.getElementById('msg').innerText="Invalid log-in cred's"
+                document.getElementById('hidden').innerText="(see console for users)"
+                document.getElementById('uname').style.backgroundColor = "white"
+                document.getElementById('pwd').style.backgroundColor = "white"
+                console.log("user\tpassword")
+                for(u in users){
+                    console.log(u+"\t"+users[u])
+                }
+            }
+        </script>
+    </body>
+</html>
